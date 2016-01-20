@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>FAtendimento</title>
+</h:head>
+<h:body>
+	<h1>Novo Atendimento</h1>
+		<h:form>
+			<fieldset>
+				<legend>Dados Atendimento</legend>
+				<h:panelGrid columns="2">
+
+					<h:outputLabel value="Data:" for="data" />
+					<h:inputText id="data" value="#{atendeBean.atendimento.data}" />
+						
+										
+					<h:outputLabel value="Cliente" for="cliente" />
+					<h:selectOneMenu value="#{atendeBean.atendimento.codcli}">
+						<f:selectItems value="#{clienteBean.clientes}" var="cliente"
+						itemLabel="#{cliente.nome}" itemValue="#{cliente.cod}" />
+					</h:selectOneMenu>
+					
+					<h:outputLabel value="Funcionario" for="funcionario" />
+					<h:selectOneMenu value="#{atendeBean.atendimento.codfun}">
+						<f:selectItems value="#{funcionarioBean.funcionarios}" var="funcionario"
+						itemLabel="#{funcionario.nome}" itemValue="#{funcionario.cod}" />
+					</h:selectOneMenu>	
+												
+					<h:commandButton value="Gravar" action="#{atendeBean.gravar(atendeBean.atendimento.cod)}" />	
+				</h:panelGrid>
+			</fieldset>
+		</h:form>
+		<h:form>
+			<h:dataTable value="#{atendeBean.atendimentos}" var="r">
+                    <h:column>
+                        <f:facet name="header">
+                            Codigo
+                        </f:facet>
+                        <h:outputText value="#{r.cod}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Data 
+                        </f:facet>
+                        <h:outputText value="#{r.data}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Cliente
+                        </f:facet>
+                        <h:outputText value="#{r.codcli}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Funcionario
+                        </f:facet>
+                        <h:outputText value="#{r.codfun}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Acoes
+                        </f:facet>
+                        <h:commandButton value="Editar" action="#{atendeBean.editar(r.cod)}"/>
+                        <h:commandButton value="Exclir" action="#{atendeBean.remove(r.cod)}"/>
+                    </h:column>
+                </h:dataTable>
+                <a href="index.html"> Volta</a>
+       </h:form>
+</h:body>
+</html>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Cliente</title>
+</h:head>
+<h:body>
+	<h1>Novo Cliente</h1>
+		<h:form>
+			<fieldset>
+				<legend>Dados Cliente</legend>
+				<h:panelGrid columns="2">
+
+					<h:outputLabel value="Nome:" for="nome" />
+					<h:inputText id="nome" value="#{clienteBean.cliente.nome}" />
+					
+					<h:outputLabel value="Sexo:" for="sexo" />
+					<h:inputText id="sexo" value="#{clienteBean.cliente.sexo}" />
+					
+					<h:outputLabel value="Rua:" for="rua" />
+					<h:inputText id="rua" value="#{clienteBean.cliente.rua}" />
+					
+					<h:outputLabel value="N:" for="n" />
+					<h:inputText id="n" value="#{clienteBean.cliente.numero}" />
+					
+					
+					<h:outputLabel value="Bairro:" for="bairro" />
+					<h:inputText id="bairro" value="#{clienteBean.cliente.bairro}" />
+												
+					<h:commandButton value="Gravar" action="#{clienteBean.gravar(clienteBean.cliente.cod)}" />	
+				</h:panelGrid>
+			</fieldset>
+		</h:form>
+		<h:form>
+			<h:dataTable value="#{clienteBean.clientes}" var="r">
+                    <h:column>
+                        <f:facet name="header">
+                            Codigo
+                        </f:facet>
+                        <h:outputText value="#{r.cod}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Nome
+                        </f:facet>
+                        <h:outputText value="#{r.nome}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Sexo
+                        </f:facet>
+                        <h:outputText value="#{r.sexo}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Endereco
+                        </f:facet>
+                        <h:outputText value="#{r.rua}"/>
+                        <h:outputText value="#{r.numero}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Bairro
+                        </f:facet>
+                        <h:outputText value="#{r.bairro}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Acoes
+                        </f:facet>
+                        <h:commandButton value="Editar" action="#{clienteBean.editar(r.cod)}"/>
+                        <h:commandButton value="Exclir" action="#{clienteBean.remove(r.cod)}"/>
+                    </h:column>
+                </h:dataTable>
+                <a href="index.html"> Volta</a>
+       </h:form>
+</h:body>
+</html>

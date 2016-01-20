@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Cargo</title>
+</h:head>
+<h:body>
+	<h1>Novo Cargo</h1>
+		<h:form>
+			<fieldset>
+				<legend>Dados Cargo</legend>
+				<h:panelGrid columns="2">
+
+					<h:outputLabel value="Salario:" for="salario" />
+					<h:inputText id="salario" value="#{cargoBean.cargo.salario}" />
+					
+					<h:outputLabel value="Descricao:" for="descricao" />
+					<h:inputText id="descricao" value="#{cargoBean.cargo.descricao}" />
+						
+																	
+					<h:commandButton value="Gravar" action="#{cargoBean.gravar(cargoBean.cargo.cod)}" />	
+				</h:panelGrid>
+			</fieldset>
+		</h:form>
+		<h:form>
+			<h:dataTable value="#{cargoBean.cargos}" var="r">
+                    <h:column>
+                        <f:facet name="header">
+                            Codigo
+                        </f:facet>
+                        <h:outputText value="#{r.cod}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Decricao
+                        </f:facet>
+                        <h:outputText value="#{r.descricao}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Salario
+                        </f:facet>
+                        <h:outputText value="#{r.salario}"/>
+                    </h:column>
+                   
+                    <h:column>
+                        <f:facet name="header">
+                            Acoes
+                        </f:facet>
+                        <h:commandButton value="Editar" action="#{cargoBean.editar(r.cod)}"/>
+                        <h:commandButton value="Exclir" action="#{cargoBean.remove(r.cod)}"/>
+                    </h:column>
+                </h:dataTable>
+                <a href="index.html"> Volta</a>
+       </h:form>
+</h:body>
+</html>
